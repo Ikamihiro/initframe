@@ -1,7 +1,7 @@
 <?php
 
-require APP . '/core/session.php';
-require APP . '/models/usuario.php';
+require APP . 'core/session.php';
+require APP . 'models/usuario.php';
 
 class Login extends Controller
 {

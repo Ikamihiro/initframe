@@ -1,7 +1,6 @@
 <?php
 
-require APP . '/core/model.php';
-require APP . '/database/conexao.php';
+require APP . 'core/model.php';
 
 class Hero extends Model
 {

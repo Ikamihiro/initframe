@@ -1,7 +1,7 @@
 <?php
 
-require APP . '/models/hero.php';
-require APP . '/core/session.php';
+require APP . 'models/hero.php';
+require APP . 'core/session.php';
 
 class Heroes extends Controller
 {

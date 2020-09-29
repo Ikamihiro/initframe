@@ -1,5 +1,7 @@
 <?php
 
+require APP . 'database/conexao.php';
+
 class Model
 {
     private $db;

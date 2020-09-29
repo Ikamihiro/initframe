@@ -1,6 +1,6 @@
 <?php
 
-require APP . '/core/session.php';
+require APP . 'core/session.php';
 
 class Admin extends Controller
 {
