@@ -1,18 +1,13 @@
 <?php
 
+require APP . '/core/model.php';
 require APP . '/database/conexao.php';
 
-class Hero
+class Hero extends Model
 {
-    private $db;
-
     public function __construct()
     {
-        try {
-            $this->db = Conexao::getConexao();
-        } catch (PDOException $e) {
-            exit('Database connection could not be established.');
-        }
+        parent::__construct();
     }
 
     public static function all()

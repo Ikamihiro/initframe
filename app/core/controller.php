@@ -10,6 +10,16 @@ class Controller
         // Construtor
     }
 
+    protected function auth()
+    {
+        Session::init();
+        if(!Session::get('login'))
+        {
+            Session::destroy();
+            header("Location:" . AUTH_URL);
+            exit;
+        }
+    }
 
     public function renderView($view, $array = null)
     {
