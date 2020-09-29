@@ -22,6 +22,9 @@ class Login extends Controller
 
     public function login()
     {
-
+        $params = array(
+            "email" => $_POST["email"],
+            "password" => $_POST["password"]
+        );
     }
 }

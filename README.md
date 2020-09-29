@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Meu objetivo é criar uma mini framework para fins de estudos. **Só isso.**
+Meu objetivo é criar um mini framework para fins de estudos. **Só isso.**
 
 ### O que falta?
 
