@@ -5,9 +5,15 @@
     <title>MINI</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?php echo URL_BASE ?>css/base.css">
 </head>
 <body>
-    <h1>Header</h1>
-    <br>
-    <a href="<?php echo URL_BASE ?>login/logout">Logout</a>
-    <br>
+    <header>
+        <div class="navbar">
+            <div class="navbar__brand">
+                <a href="<?php echo URL_BASE ?>">
+                    Heroes
+                </a>
+            </div>
+        </div>
+    </header>
