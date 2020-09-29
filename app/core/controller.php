@@ -13,7 +13,7 @@ class Controller
     protected function auth()
     {
         Session::init();
-        if(!Session::get('login'))
+        if(Session::get('login') == false)
         {
             Session::destroy();
             header("Location:" . AUTH_URL);

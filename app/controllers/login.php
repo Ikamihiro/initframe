@@ -15,17 +15,17 @@ class Login extends Controller
         Session::init();
         if(Session::get('login'))
         {
-            header('Location:' . AUTH_URL);
+            header('Location:' . ADMIN_URL);
         }
 
         $this->renderView('admin/login');
     }
 
-    public function login()
+    public function autenticar()
     {
         $params = array(
-            ":email" => $_POST["email"],
-            ":password" => $_POST["password"]
+            "email" => $_POST["email"],
+            "password" => $_POST["password"]
         );
 
         $result = Usuario::autenticar($params);
@@ -36,9 +36,9 @@ class Login extends Controller
         } else {
             Session::init();
             Session::set('login', true);
-            Session::set('emailUsuario', $result[0]['email']);
-            Session::set('usuarioId', $result[0]['id']);
-            Session::set('nomeUsuario', $result[0]['nome']);
+            Session::set('emailUsuario', $result->email);
+            Session::set('usuarioId', $result->id);
+            Session::set('nomeUsuario', $result->nome);
 
             header('Location:' . ADMIN_URL);
         }

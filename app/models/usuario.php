@@ -5,7 +5,7 @@ require APP . '/database/conexao.php';
 
 class Usuario extends Model
 {
-    public function __construct($data)
+    public function __construct()
     {
         parent::__construct();
     }
@@ -13,14 +13,24 @@ class Usuario extends Model
     public static function autenticar($array)
     {
         $conexao = Conexao::getConexao();
-        $sql = "select * from usuario where email=:email and password=:password";
-        $count = $conexao->affectedRows($sql, $array);
+        $query = $conexao->prepare("SELECT * from `usuarios` where `email`='{$array['email']}' and `password`='{$array['password']}'");
 
-        if($count > 0)
+        if($query->execute())
         {
-            return $conexao->select($sql, $array);
-        }
+            if($query->rowCount() > 0)
+            {
+                $resultado = $query->fetchObject(Usuario::class);
+                //$resultado = $query->fetch();
+                //var_dump($resultado);
+                //die();
 
-        return false;
+                if($resultado)
+                {
+                    return $resultado;
+                }
+            }
+        } else {
+            return false;
+        }
     }
 }
