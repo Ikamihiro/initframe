@@ -1,7 +1,7 @@
 <?php
 
-require APP . 'core/model.php';
-require APP . 'database/conexao.php';
+require_once APP . 'core/model.php';
+require_once APP . 'database/conexao.php';
 
 class Usuario extends Model
 {
@@ -20,9 +20,6 @@ class Usuario extends Model
             if($query->rowCount() > 0)
             {
                 $resultado = $query->fetchObject(Usuario::class);
-                //$resultado = $query->fetch();
-                //var_dump($resultado);
-                //die();
 
                 if($resultado)
                 {

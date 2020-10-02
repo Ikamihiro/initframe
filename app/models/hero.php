@@ -1,6 +1,6 @@
 <?php
 
-require APP . 'core/model.php';
+require_once APP . 'core/model.php';
 
 class Hero extends Model
 {
@@ -16,5 +16,13 @@ class Hero extends Model
         $query = $conexao->prepare($sql);
         $query->execute();
         return $query->fetchAll();
+    }
+
+    public function save()
+    {
+        if(is_null($this->id))
+        {
+            $sql = 'INSERT INTO `heroes` (`nome`, `contribuicao`, `descricao`) VALUES (:nome, :contribuicao, :descricao)';
+        }
     }
 }

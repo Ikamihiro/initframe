@@ -10,10 +10,8 @@
 <body>
     <header>
         <div class="navbar">
-            <div class="navbar__brand">
-                <a href="<?php echo URL_BASE ?>">
-                    Heroes
-                </a>
-            </div>
+            <a href="<?php echo URL_BASE ?>heroes">
+                Heroes
+            </a>
         </div>
     </header>

@@ -1,6 +1,6 @@
 <?php
 
-require APP . 'database/conexao.php';
+require_once APP . 'database/conexao.php';
 
 class Model
 {

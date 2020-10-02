@@ -1,7 +1,7 @@
 <?php
 
-require APP . 'core/session.php';
-require APP . 'models/usuario.php';
+require_once APP . 'core/session.php';
+require_once APP . 'models/usuario.php';
 
 class Login extends Controller
 {
@@ -13,12 +13,12 @@ class Login extends Controller
     public function index()
     {
         Session::init();
-        if(Session::get('login'))
+        if(Session::get('login') == true)
         {
-            header('Location:' . ADMIN_URL);
+            $this->redirect('login');
         }
 
-        $this->renderView('admin/login');
+        $this->view('admin/login');
     }
 
     public function autenticar()
@@ -32,15 +32,14 @@ class Login extends Controller
 
         if(!$result)
         {
-            header("Location:" . AUTH_URL);
+            $this->redirect('login');
         } else {
             Session::init();
             Session::set('login', true);
             Session::set('emailUsuario', $result->email);
             Session::set('usuarioId', $result->id);
             Session::set('nomeUsuario', $result->nome);
-
-            header('Location:' . ADMIN_URL);
+            $this->redirect('admin');
         }
     }
 
@@ -48,6 +47,6 @@ class Login extends Controller
     {
         Session::init();
         Session::destroy();
-        header("Location:" . AUTH_URL);
+        $this->redirect('login');
     }
 }

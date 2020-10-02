@@ -21,7 +21,7 @@ class Controller
         }
     }
 
-    public function renderView($view, $array = null)
+    public function view($view, $array = null)
     {
         if (!is_null($array))
         {
@@ -34,5 +34,19 @@ class Controller
         require APP . 'views/_templates/header.php';
         require APP . 'views/' . $view . '.php';
         require APP . 'views/_templates/footer.php';
+    }
+
+    public function redirect($route)
+    {
+        // Se for especificada uma rota
+        // o sistema irá direcionar o usuário a ela
+        if(!is_null($route))
+        {
+            header('Location:' . URL_BASE . $route);
+        } else {
+            // Se não for especificada, redireciona para
+            // a rota raiz do sistema
+            header('Location:' . URL_BASE);
+        }
     }
 }
