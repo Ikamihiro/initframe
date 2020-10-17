@@ -36,12 +36,21 @@ class Controller
         require APP . 'views/_templates/footer.php';
     }
 
-    public function redirect($route)
+    public function redirect($route, $array = null)
     {
         // Se for especificada uma rota
         // o sistema irá direcionar o usuário a ela
         if(!is_null($route))
         {
+            if (!is_null($array))
+            {
+                Session::init();
+                foreach ($array as $var => $value)
+                {
+                    Session::set($var, $value);
+                }
+            }
+
             header('Location:' . URL_BASE . $route);
         } else {
             // Se não for especificada, redireciona para

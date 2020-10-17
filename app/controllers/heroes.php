@@ -35,13 +35,14 @@ class Heroes extends Controller
         if($this->validate($params, $erros))
         {
             $hero = new Hero();
+            $hero->id = null;
             $hero->nome = $params['nome'];
             $hero->contribuicao = $params['contribuicao'];
             $hero->descricao = $params['descricao'];
 
             if($hero->save())
             {
-                $this->redirect('heroes');
+                $this->redirect('heroes', ['sucesso' => 'Heroi salvo com sucesso!']);
             } else {
                 $this->view('heroes/create', ['erro' => 'Aconteceu algum erro na inserção no banco...']);
             }
@@ -52,7 +53,48 @@ class Heroes extends Controller
 
     public function edit($id)
     {
+        $hero = Hero::find($id);
+        $this->view('heroes/edit', ['hero' => $hero]);
+    }
 
+    public function update($id)
+    {
+        $hero = Hero::find($id);
+
+        $params = array(
+            "nome" => $_POST["nome"],
+            "contribuicao" => $_POST["contribuicao"],
+            "descricao" => $_POST['descricao']
+        );
+
+        $erros = array();
+
+        if($this->validate($params, $erros))
+        {
+            $hero->nome = $params['nome'];
+            $hero->contribuicao = $params['contribuicao'];
+            $hero->descricao = $params['descricao'];
+
+            if($hero->save())
+            {
+                $this->redirect('heroes', ['sucesso' => 'Heroi salvo com sucesso!']);
+            } else {
+                $this->view('heroes/create', ['erro' => 'Aconteceu algum erro na inserção no banco...']);
+            }
+        } else {
+            $this->view('heroes/edit', ['hero' => $hero, 'erros' => $erros]);
+        }
+    }
+
+    public function delete($id)
+    {
+        $hero = Hero::find($id);
+
+        if($hero->delete()) {
+            $this->redirect('heroes', ['sucesso' => 'Heroi deletado com sucesso!']);
+        } else {
+            $this->redirect('heroes', ['erro' => 'Não conseguimos deletar o heroi']);
+        }
     }
 
     private function validate($params, &$erros)

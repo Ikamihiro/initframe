@@ -11,7 +11,7 @@ class Model
     {
         try {
             $this->db = Conexao::getConexao();
-            $this->id = null;
+            //$this->id = null;
         } catch (PDOException $e) {
             exit('Database connection could not be established.');
         }
