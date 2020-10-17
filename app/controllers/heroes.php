@@ -39,25 +39,35 @@ class Heroes extends Controller
             $hero->contribuicao = $params['contribuicao'];
             $hero->descricao = $params['descricao'];
 
-            $this->redirect('heroes');
+            if($hero->save())
+            {
+                $this->redirect('heroes');
+            } else {
+                $this->view('heroes/create', ['erro' => 'Aconteceu algum erro na inserção no banco...']);
+            }
         } else {
-            $this->view('heroes/create', $erros);
+            $this->view('heroes/create', ['erros' => $erros]);
         }
     }
 
-    private function validate($params, $erros)
+    public function edit($id)
     {
-        if(is_null($params['nome']) && strlen($params['nome']) == 0)
+
+    }
+
+    private function validate($params, &$erros)
+    {
+        if(strlen($params['nome']) == 0)
         {
             $erros['nome'] = 'O Nome é obrigatório';
         }
 
-        if(is_null($params['contribuicao']) && strlen($params['contribuicao']) == 0)
+        if(strlen($params['contribuicao']) == 0)
         {
             $erros['contribuicao'] = 'A Contribuição é obrigatória';
         }
 
-        if(is_null($params['descricao']) && strlen($params['descricao']) == 0)
+        if(strlen($params['descricao']) == 0)
         {
             $erros['descricao'] = 'A Descrição é obrigatória';
         }
@@ -65,8 +75,8 @@ class Heroes extends Controller
         if(count($erros) > 0)
         {
             return false;
+        } else {
+            return true;
         }
-
-        return true;
     }
 }

@@ -20,9 +20,21 @@ class Hero extends Model
 
     public function save()
     {
-        if(is_null($this->id))
+        if(!$this->id)
         {
+            $data = [
+                'nome' => $this->nome,
+                'contribuicao' => $this->contribuicao,
+                'descricao' => $this->descricao,
+            ];
             $sql = 'INSERT INTO `heroes` (`nome`, `contribuicao`, `descricao`) VALUES (:nome, :contribuicao, :descricao)';
+            $stmt = $this->db->prepare($sql);
+
+            if($stmt->execute($data)) {
+                return true;
+            }
+
+            return false;
         }
     }
 }

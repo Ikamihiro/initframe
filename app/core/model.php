@@ -4,13 +4,14 @@ require_once APP . 'database/conexao.php';
 
 class Model
 {
-    private $db;
+    public $db;
     private $atributos;
 
     public function __construct()
     {
         try {
             $this->db = Conexao::getConexao();
+            $this->id = null;
         } catch (PDOException $e) {
             exit('Database connection could not be established.');
         }
