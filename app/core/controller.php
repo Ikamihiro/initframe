@@ -23,6 +23,8 @@ class Controller
 
     public function view($view, $array = null)
     {
+        ob_start();
+
         if (!is_null($array))
         {
             foreach ($array as $var => $value)
@@ -34,10 +36,13 @@ class Controller
         require APP . 'views/_templates/header.php';
         require APP . 'views/' . $view . '.php';
         require APP . 'views/_templates/footer.php';
+
+        ob_flush();
     }
 
     public function redirect($route, $array = null)
     {
+        ob_start();
         // Se for especificada uma rota
         // o sistema irá direcionar o usuário a ela
         if(!is_null($route))
@@ -57,5 +62,7 @@ class Controller
             // a rota raiz do sistema
             header('Location:' . URL_BASE);
         }
+
+        ob_flush();
     }
 }
